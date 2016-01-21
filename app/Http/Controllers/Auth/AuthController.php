@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace acessoSystem\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use App\Http\Controllers\Controller;
+use acessoSystem\Entities\User;
+use Illuminate\Support\Facades\Validator;
+use acessoSystem\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use acessoSystem\Entities\Client;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -28,7 +30,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new authentication controller instance.
@@ -49,9 +51,27 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'name'                         => 'required|max:255|regex:/^[\pL\s\-]+$/u',
+            'email'                        => 'required|email|max:255|unique:users',
+            'cpf'                          => 'required|max:255|unique:users',
+            'password'                     => 'required|confirmed|min:6',
+            'identity'                     =>'required',
+            'birthdate'                    =>'required',
+            'phone'                        =>'required',
+            'cel'                          =>'required',
+            'gender'                       =>'required',
+            'maritalstatus'                =>'required',
+            'mother'                       =>'required',
+            'father'                       =>'required',
+            'nationality'                  =>'required',
+            'naturality'                   =>'required',
+            'children'                     =>'required',
+            'zipcode'                      =>'required',
+            'address'                      =>'required',
+            'neighborhood'                 =>'required',
+            'complement'                   =>'required',
+            'city'                         =>'required',
+            'state'                        =>'required',
         ]);
     }
 
@@ -63,10 +83,48 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+        \DB::beginTransaction();
+        try {
+        $user = User::create([
+                    'name'                  => $data['name'],
+                    'email'                 => $data['email'],
+                    'cpf'                   => $data['cpf'],
+                    'identity'              => $data['identity'],
+                    'password'              => bcrypt($data['password']),
+                ]);
+
+        $data['user_id'] = $user['id'];
+
+                Client::create([
+                    'user_id'               => $data['user_id'],
+                    'birthdate'             => $data['birthdate'],
+                    'phone'                 => $data['phone'],
+                    'cel'                   => $data['cel'],
+                    'gender'                => $data['gender'],
+                    'maritalstatus'         => $data['maritalstatus'],
+                    'mother'                => $data['mother'],
+                    'father'                => $data['father'],
+                    'nationality'           => $data['nationality'],
+                    'naturality'            => $data['naturality'],
+                    'children'              => $data['children'],
+                    'zipcode'               => $data['zipcode'],
+                    'address'               => $data['address'],
+                    'neighborhood'          => $data['neighborhood'],
+                    'complement'            => $data['complement'],
+                    'city'                  => $data['city'],
+                    'state'                 => $data['state'],
+
+                ]);
+
+            \DB::commit();
+        } catch (\Exception $e) {
+            \DB::rollback();
+            throw $e;
+        }
+
+        Session::put('success', 'Corrigida com sucesso');
+        return $user;
+
     }
 }

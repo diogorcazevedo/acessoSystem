@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,11 +12,58 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(acessoSystem\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
+        'cpf' => str_random(11),
+        'identity'=>$faker->randomDigit,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+
+
+    ];
+});
+
+
+$factory->define(acessoSystem\Entities\Client::class, function (Faker\Generator $faker) {
+    return [
+        'birthdate'=>$faker->date,
+        'phone'=> $faker->phoneNumber,
+        'cel'=> $faker->phoneNumber,
+        'gender'=>'M',
+        'maritalstatus'=>$faker->word,
+        'mother'=>$faker->word,
+        'father'=>$faker->word,
+        'nationality'=>$faker->word,
+        'naturality'=>$faker->word,
+        'children'=>$faker->randomDigit,
+        'zipcode'=>$faker->postcode,
+        'address'=> $faker->address,
+        'complement'=>$faker->secondaryAddress,
+        'city'=> $faker->city,
+        'state'=>$faker->state,
+
+    ];
+});
+
+$factory->define(acessoSystem\Entities\Sponsor::class, function (Faker\Generator $faker) {
+    return [
+        'name'=>$faker->word,
+        'state'=>$faker->state,
+        'contact'=>$faker->word,
+        'cel'=> $faker->phoneNumber,
+        'description'=>$faker->sentence,
+
+    ];
+});
+
+$factory->define(acessoSystem\Entities\Protocol::class, function (Faker\Generator $faker) {
+    return [
+        'name'=>$faker->word,
+        'description'=>$faker->sentence,
+        'date'=>$faker->date,
+        'progress' => rand(1,100),
+        'status' => rand(1,3),
     ];
 });
