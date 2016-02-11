@@ -74,7 +74,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="segundomenu" href="#">CONTATO</a></li>
+                <li><a id="segundomenu" href="{{route('contacts.create')}}">CONTATO</a></li>
                 <li><a id="segundomenu" href="{{route('home.security')}}">SEGURANÇA</a></li>
                 <li><a id="segundomenu" href="{{route('home.governance')}}">GOVERNANÇA</a></li>
                 <li><a id="segundomenu" href="{{url('/login')}}">LOGIN</a></li>

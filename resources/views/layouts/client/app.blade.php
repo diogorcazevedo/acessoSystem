@@ -5,68 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Correção Acesso</title>
+    <title>Acesso Público</title>
 
     <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
 
-
-</head><!--/head-->
+</head>
+<!--/head-->
 
 <body>
 
-    <div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="shop-menu pull-left">
-                        <ul class="nav navbar-nav">
-                            @if((Auth::user()->role == 'client'))
-                                    <li><a href="{{ route('home')}}">Minhas correções</a></li>
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="logo pull-left">
-                        <img class="img-responsive" src="{{url('img/logo.png')}}" alt="" />
-                    </div>
-
-                </div>
-                <div class="col-sm-5">
-                    <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
-                            <ul class="nav navbar-nav navbar-right">
-                                @if(auth()->guest())
-                                    @if(!Request::is('auth/login'))
-                                        <li><a class="notbackground" href="{{ url('/login') }}"><i class="fa fa-user"></i> Login</a></li>
-                                    @endif
-                                    @if(!Request::is('auth/register'))
-                                        <li><a class="notbackground" href="{{ route('home')}}">Registro</a></li>
-                                    @endif
-                                @else
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ url('/logout') }}">Logout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="notbackground" href="{{ route('home')}}">Editar</a></li>
-
-                                @endif
-                            </ul>
-                        </ul>
+<div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="shop-menu pull-left">
+                    <div class="shop-menu">
+                        @if((Auth::user()->role == 'client'))
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('home')}}" type="button" class="btn btn-blue">Home</a>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button"
+                                       class="btn btn-default">Candidato: {{ auth()->user()->name}}</button>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
+            <div class="col-sm-2">
+                <div class="logo pull-left">
+                    <a href="{{route('layout.client')}}">
+                        <img class="img-responsive" src="{{url('img/logo.png')}}" alt=""/>
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-sm-5">
+                <div class="shop-menu pull-right">
+                    @if((Auth::user()->role == 'client'))
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Meus dados
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <a href="{{ url('/logout') }}" type="button" class="btn btn-danger">Sair</a>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
-    </div><!--/header-middle-->
+    </div>
+</div>
+<!--/header-middle-->
 
 </header><!--/header-->
-
 
 
 <section class="clearmargin">
@@ -79,20 +85,23 @@
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2015 Acesso Público. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="https://www.acessopublico.org.br/">ACESSO</a></span></p>
+
+                <p class="pull-right">Designed by <span><a target="_blank" href="https://www.acessopublico.org.br/">ACESSO</a></span>
+                </p>
             </div>
         </div>
     </div>
 
-</footer><!--/Footer-->
+</footer>
+<!--/Footer-->
 
 
-    <!-- JavaScripts -->
+<!-- JavaScripts -->
 
 
-        <script src="{{url(elixir('js/all.js'))}}"></script>
+<script src="{{url(elixir('js/all.js'))}}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 
 
 </body>

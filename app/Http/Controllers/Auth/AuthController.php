@@ -123,7 +123,7 @@ class AuthController extends Controller
             throw $e;
         }
 
-        Session::put('success', 'Corrigida com sucesso');
+        Session::put('success', 'Cadastrado com sucesso');
         return $user;
 
     }

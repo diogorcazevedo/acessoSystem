@@ -3,7 +3,6 @@
 namespace acessoSystem\Http\Controllers;
 
 
-
 use acessoSystem\Http\Requests;
 use acessoSystem\Http\Requests\DeliverableRequest;
 use acessoSystem\Repositories\DeliverableRepository;
@@ -12,7 +11,6 @@ use acessoSystem\Repositories\ProtocolRepository;
 
 class DeliverablesController extends Controller
 {
-
 
 
     /**
@@ -29,7 +27,6 @@ class DeliverablesController extends Controller
     {
 
 
-
         $this->protocolRepository = $protocolRepository;
         $this->repository = $repository;
     }
@@ -37,19 +34,19 @@ class DeliverablesController extends Controller
 
     public function index()
     {
-        $deliverables= $this->repository->paginate(5);
+        $deliverables = $this->repository->paginate(5);
         $deliverables->setPath('deliverables');
 
-          return view('admin.deliverables.index',compact('deliverables'));
+        return view('admin.deliverables.index', compact('deliverables'));
 
     }
 
     public function create()
     {
-        $protocols =  $this->protocolRepository->lists();
+        $protocols = $this->protocolRepository->lists();
 
 
-        return view('admin.deliverables.create',compact('protocols'));
+        return view('admin.deliverables.create', compact('protocols'));
 
     }
 
@@ -64,15 +61,15 @@ class DeliverablesController extends Controller
     public function edit($id)
     {
         $deliverable = $this->repository->find($id);
-        $protocols =  $this->protocolRepository->lists();
+        $protocols = $this->protocolRepository->lists();
 
-        return view('admin.deliverables.edit',compact('deliverable','protocols'));
+        return view('admin.deliverables.edit', compact('deliverable', 'protocols'));
     }
 
     public function update(DeliverableRequest $request, $id)
     {
         $data = $request->all();
-        $this->repository->update($data,$id);
+        $this->repository->update($data, $id);
 
         return redirect()->route('admin.deliverables.index');
     }

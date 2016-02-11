@@ -24,6 +24,8 @@ class DeliverableRequest extends Request
     public function rules()
     {
         return [
+            'protocol_id'=>'required',
+            'name'=>'required',
             'image'=>'image',
             'publishable'=>'required'
         ];

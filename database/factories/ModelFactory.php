@@ -67,3 +67,50 @@ $factory->define(acessoSystem\Entities\Protocol::class, function (Faker\Generato
         'status' => rand(1,3),
     ];
 });
+
+
+$factory->define(acessoSystem\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'protocol_id'=>rand(1,3),
+        'name'=>$faker->word,
+        'schooling'=>$faker->word,
+        'age'=>$faker->word,
+        'tax'=>$faker->numberBetween(100,50),
+        'description'=>$faker->sentence,
+        'register' => 1,
+        'status' => rand(1,3),
+    ];
+});
+
+
+$factory->define(acessoSystem\Entities\Contact::class, function (Faker\Generator $faker) {
+    return [
+        'name'=>$faker->word,
+        'email'=>$faker->email,
+        'cel'=> $faker->phoneNumber,
+        'description'=>$faker->sentence,
+        'return'=>$faker->sentence,
+        'about'=>$faker->word,
+        'status' => rand(1,3),
+        'protocol' => rand(1,3),
+
+    ];
+});
+
+
+
+
+
+
+$factory->define(acessoSystem\Entities\Appeal::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'=>rand(1,3),
+        'project_id'=>rand(1,3),
+        'name'=>$faker->word,
+        'description'=>$faker->sentence,
+        'return'=>$faker->sentence,
+        'about'=>$faker->word,
+        'status' => rand(1,3)
+
+    ];
+});

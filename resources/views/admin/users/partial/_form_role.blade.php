@@ -9,8 +9,8 @@
     </label>
     <select class="form-control" name="role">
         <option value="">ESCOLHER FUNÇÃO DO PROFISSIONAL CADASTRADO</option>
-        <option value="client">Professor</option>
-        <option value="admin">Supervisor</option>
+        <option value="client">Candidato</option>
+        <option value="coach">Atendente</option>
         <option value="admin">Administrador</option>
     </select>
 

@@ -49,6 +49,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'acessoSystem\Repositories\ProtocolFileRepository',
             'acessoSystem\Repositories\ProtocolFileRepositoryEloquent'
         );
+        $this->app->bind(
+            'acessoSystem\Repositories\ProjectRepository',
+            'acessoSystem\Repositories\ProjectRepositoryEloquent'
+        );
 
         $this->app->bind(
             'acessoSystem\Repositories\DeliverableRepository',
@@ -60,5 +64,19 @@ class RepositoryServiceProvider extends ServiceProvider
             'acessoSystem\Repositories\DeliverableFilesRepositoryEloquent'
         );
 
+        $this->app->bind(
+            'acessoSystem\Repositories\ContactRepository',
+            'acessoSystem\Repositories\ContactRepositoryEloquent'
+        );
+
+        $this->app->bind(
+            'acessoSystem\Repositories\AppealRepository',
+            'acessoSystem\Repositories\AppealRepositoryEloquent'
+        );
+
+        $this->app->bind(
+            'acessoSystem\Repositories\WarningRepository',
+            'acessoSystem\Repositories\WarningRepositoryEloquent'
+        );
     }
 }

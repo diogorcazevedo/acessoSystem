@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h3>Editais</h3>
+        <hr class="hrstyle">
+        <h4 class="text-center">Editais</h4>
+        <hr class="hrstyle">
         <br/>
         <a href='{{route('admin.protocols.create')}}' class="btn btn-primary">Novo Edital</a>
         <br/>

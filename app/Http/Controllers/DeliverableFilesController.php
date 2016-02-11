@@ -57,8 +57,17 @@ class DeliverableFilesController extends Controller
         $publishable = $request->publishable;
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
+        $filename = $file->getClientOriginalName();
 
-        $image = $this->repository->create(['deliverable_id' => $id, 'extension' => $extension,'publishable' => $publishable,'name'=>$name ]);
+
+        $image = $this->repository->create([
+            'deliverable_id' => $id,
+            'extension'      => $extension,
+            'publishable'    => $publishable,
+            'name'           => $name,
+            'file'           => $filename,
+            'user_id'        => auth()->user()->id,
+        ]);
 
         Storage::disk('local_deliverables')->put($image->id . '.' . $extension, File::get($file));
 

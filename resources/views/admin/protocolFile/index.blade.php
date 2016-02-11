@@ -3,7 +3,9 @@
 
 @section('content')
     <div class="container">
-        <h3>Images of {{$protocol->name}}</h3>
+        <hr class="hrstyle">
+        <h4 class="text-center">Images of {{$protocol->name}}</h4>
+        <hr class="hrstyle">
         <br/>
         <a href="{{route('admin.protocolsfile.create',['id'=>$protocol->id])}}" class="btn btn-primary">Nova Imagem</a>
         <br/>

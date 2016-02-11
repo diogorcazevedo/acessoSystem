@@ -19,34 +19,67 @@
     </div>
     <div class="seta"></div>
     <div class="container-fluid">
-        <!-- Editais -->
-        <div class="col-lg-offset-1 col-lg-10">
+        <div class="col-lg-6">
+            <section>
+                <blockquote>
+                    <h2 class="meio">Avisos:</h2>
+                </blockquote>
+                <div class="col-lg-offset-1 col-lg-11 wellwhite well-sm">
+                    <div class="col-lg-3">
+                        @foreach($protocol->files as $file)
+                            @if($file->type == 1)
+                                <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"
+                                     width="60" height="60"/>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="col-lg-offset-1 col-lg-8">
+                        <a href="#">
+                            <p><b>{{$protocol->name}}</b><p/>
+                            <p> <small>{{$protocol->description}}</small></p>
+                        </a>
+                    </div>
+                    <div class="col-lg-12">
+                        @foreach($protocol->projects as $project)
+                            <div class="wellwhite">
+                                <p><b>Concurso: {{$project->name}}</b><p/>
+                                <p>Nível de escolaridade: {{$project->schooling}}<p/>
+                                <p>Descrição:  <small>{{$project->description}}</small></p>
+                                @if($protocol->status == 1)
+                                <p>Taxa de inscrição: {{$project->tax}}<p/>
+                                <p><a href="{{url('register')}}" class="btn btn-sm btn-orange">Cadastrar</a> </p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- publicacoes -->
+        <div class="col-lg-offset-1 col-lg-5">
             <div class="row">
+                <h2 class="meio">PUBLICAÇÕES</h2>
+                <hr class="hrstyle">
                 @if(!empty($publishs))
                         <!-- publicacoes -->
-                <div class="col-lg-12">
+                <div class="col-lg-11">
                     <section>
-                        <h2 class="meio">PUBLICAÇÕES DOS CONCURSOS EM ANDAMENTO</h2>
-                        <hr class="hrstyle">
                         @foreach($publishs as $publish)
-                            <div class="wellwhite well-sm col-lg-6">
+                            <div class="wellwhite well-sm col-lg-12">
                                 <div class="col-lg-12">
                                     <div class="panel panel-default">
                                         <div class="panel panel-heading">
                                             <article>
                                                 <p>{{$publish->name}}</p>
-
-                                                <p>
-                                                    <small>{{$publish->description}}</small>
-                                                </p>
                                             </article>
                                         </div>
                                         <div class="panel panel-body">
                                             <article>
                                                 @foreach($publish->files as $file)
-                                                    <p>
-                                                        <a href="{{url('uploads/deliverables/'.$file->id.'.'.$file->extension)}}"
-                                                           download>{{$file->name}}</a></p>
+                                                    <a href="{{url('uploads/deliverables/'.$file->id.'.'.$file->extension)}}"
+                                                       download>
+                                                        <p class="wellwhite">{{$file->name}}</p>
+                                                    </a>
                                                 @endforeach
                                             </article>
                                         </div>
@@ -59,8 +92,9 @@
                 @endif
             </div>
         </div>
+
     </div>
-    </div>
+
 
     <!-- Rodapé -->
     <div class="seta2"></div>

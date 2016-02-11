@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <hr class="hrstyle">
-        <h3>Administrações e Orgãos</h3>
+        <h4 class="text-center">Administrações e Orgãos</h4>
         <hr class="hrstyle">
         <br/>
         <a href="{{route('admin.sponsors.create')}}"class="btn btn-primary">Nova Administração</a>

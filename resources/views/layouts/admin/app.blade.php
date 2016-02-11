@@ -5,92 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Correção Acesso</title>
+    <title>Acesso Público</title>
 
     <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
 
-</head><!--/head-->
+</head>
+<!--/head-->
 
 <body>
 
-    <div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="shop-menu pull-left">
-                        <ul class="nav navbar-nav">
-                            @if(Auth::user())
-                                @if(Auth::user()->role == 'admin' or Auth::user()->role == 'coach' or Auth::user()->role == 'master')
-                                    <li class="notbackground"><a href="{{ route('admin.layout.admin')}}">Home</a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false">Usuários <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('admin.users.index')}}">Listar Todos</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false">Gestão de Projeto <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('admin.sponsors.index')}}">Adminsitrações</a></li>
-                                            <li><a href="{{ route('admin.protocols.index')}}">Editais de Concurso</a></li>
-                                            <li><a href="{{ route('admin.deliverables.index')}}">Etapas do Concurso</a></li>
-                                        </ul>
-                                    </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                               aria-expanded="false">Revisões <span class="caret"></span></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ route('home')}}">Provas Zeradas</a></li>
-                                            </ul>
+<div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="shop-menu pull-left">
+                    @if(Auth::user())
+                        @if(Auth::user()->role == 'admin' or Auth::user()->role == 'coach' or Auth::user()->role == 'master')
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.layout.admin')}}" type="button"
+                                       class="btn btn-blue">HOME</a>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        USUÁRIOS
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('admin.users.index')}}">Listar Todos</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                         EDITAIS
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('admin.sponsors.index')}}">Adminsitrações Públicas</a>
                                         </li>
-                                @endif
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="logo pull-left">
-                        <img class="img-responsive" src="{{url('img/logo.png')}}" alt="" />
-                    </div>
+                                        <li><a href="{{ route('admin.protocols.index')}}">Editais de Concurso</a></li>
+                                        <li><a href="{{ route('admin.projects.index')}}">Projetos (concorrências)</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                </div>
-                <div class="col-sm-5">
-                    <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
-                            <ul class="nav navbar-nav navbar-right">
-                                @if(auth()->guest())
-                                    @if(!Request::is('auth/login'))
-                                        <li><a class="notbackground" href="{{ url('/login') }}"><i class="fa fa-user"></i> Login</a></li>
-                                    @endif
-                                    @if(!Request::is('auth/register'))
-                                        <li><a class="notbackground" href="{{ route('home')}}">Registro</a></li>
-                                    @endif
-                                @else
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ url('/logout') }}">Logout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="notbackground" href="{{ route('home')}}">Editar</a></li>
 
-                                @endif
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        PUBLICAÇÕES
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('admin.deliverables.index')}}">Etapas do concurso</a></li>
+                                        <li><a href="{{ route('admin.warnings.index')}}">Gerenciar avisos</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        ATENDIMENTOS
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('admin.contacts.open')}}">Contatos abertos</a></li>
+                                        <li><a href="{{ route('admin.contacts.index')}}">listar todos</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="logo pull-left">
+                    <a href="{{route('admin.layout.admin')}}">
+                        <img class="img-responsive" src="{{url('img/logo.png')}}" alt=""/>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="shop-menu pull-right">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Meus dados
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('admin.users.password',['id'=>auth()->user()->id])}}">Mudar Senha</a></li>
+                                <li><a href="{{route('admin.users.edit',['id'=>auth()->user()->id])}}">Editar dados</a></li>
                             </ul>
-                        </ul>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a href="{{ url('/logout') }}" type="button" class="btn btn-danger">Sair</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-middle-->
+    </div>
+</div>
+<!--/header-middle-->
 
 </header><!--/header-->
-
 
 
 <section class="clearmargin">
@@ -103,20 +130,23 @@
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2015 Acesso Público. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="https://www.acessopublico.org.br/">ACESSO</a></span></p>
+
+                <p class="pull-right">Designed by <span><a target="_blank" href="https://www.acessopublico.org.br/">ACESSO</a></span>
+                </p>
             </div>
         </div>
     </div>
 
-</footer><!--/Footer-->
+</footer>
+<!--/Footer-->
 
 
-    <!-- JavaScripts -->
+<!-- JavaScripts -->
 
 
-        <script src="{{url(elixir('js/all.js'))}}"></script>
+<script src="{{url(elixir('js/all.js'))}}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 
 
 </body>

@@ -3,9 +3,11 @@
 
 @section('content')
     <div class="container">
-        <h3>Images of {{$deliverable->name}}</h3>
+        <hr class="hrstyle">
+        <h4 class="text-center">Documentos: {{$deliverable->name}}</h4>
+        <hr class="hrstyle">
         <br/>
-        <a href="{{route('admin.deliverablefiles.create',['id'=>$deliverable->id])}}" class="btn btn-primary">Nova Imagem</a>
+        <a href="{{route('admin.deliverablefiles.create',['id'=>$deliverable->id])}}" class="btn btn-primary">Novo Documento</a>
         <br/>
         <br/>
 
@@ -14,8 +16,9 @@
             <tr>
                 <th>Id</th>
                 <th>Image</th>
-                <th>Name</th>
-                <th>Documento</th>
+                <th>Publicação</th>
+                <th>Publicado</th>
+                <th>Nome</th>
                 <th>Extension</th>
                 <th>Ação</th>
             </tr>
@@ -26,7 +29,8 @@
                 <td>{{$file->id}}</td>
                 <td><img src="{{url('uploads/deliverables/'.$file->id.'.'.$file->extension)}}"/> </td>
                 <td>{{$file->name}}</td>
-                <td>{{$file->publishable}}</td>
+                <td>{{ $file->publishable == 1 ? 'sim' : 'não' }}</td>
+                <td>{{$file->file}}</td>
                 <td>{{$file->extension}}</td>
                 <td>
                     <a href="{{route('admin.deliverablefiles.destroy',['id'=>$file->id])}}" class="btn-sm btn btn-orange">

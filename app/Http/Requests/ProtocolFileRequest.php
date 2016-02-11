@@ -24,7 +24,7 @@ class ProtocolFileRequest extends Request
     public function rules()
     {
         return [
-            'image'=>'image',
+            'image'=> 'mimes:jpeg,bmp,png,pdf,csv,xls,xlsx,doc,docx,jpg,zip,rar,sql,json,xml',
             'type'=>'required'
         ];
     }

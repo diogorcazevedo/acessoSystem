@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('layout/app');
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -30,6 +29,9 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
+
+    Route::get('contacts/create',['as'=>'contacts.create','uses'=> 'ContactsController@create']);
+    Route::post('contacts/store',['as'=>'contacts.store','uses'=> 'ContactsController@store']);
 
 
     //rotas home
@@ -49,10 +51,21 @@ Route::group(['middleware' => 'web'], function () {
 
 
             Route::group(['middleware'=>'auth.checkrole:client'],function(){
+
+
                 Route::get('layout/client',['as'=>'layout.client','uses'=> 'LayoutController@client']);
 
+                //edição de dados
                 Route::get('users/edit/{id}',['as'=>'users.edit','uses'=> 'UsersController@edit']);
                 Route::post('users/update/{id}',['as'=>'users.update','uses'=> 'UsersController@update']);
+
+
+                //recursos
+                Route::get('appeals/create',['as'=>'appeals.create','uses'=> 'AppealsController@create']);
+                Route::post('appeals/store',['as'=>'appeals.store','uses'=> 'AppealsController@store']);
+
+
+
             });
 
 
@@ -86,7 +99,12 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('protocols/edit/{id}',['as'=>'protocols.edit','uses'=> 'ProtocolsController@edit']);
                 Route::post('protocols/update/{id}',['as'=>'protocols.update','uses'=> 'ProtocolsController@update']);
 
-
+                //avisos
+                Route::get('warnings',['as'=>'warnings.index','uses'=> 'WarningsController@index']);
+                Route::get('warnings/create',['as'=>'warnings.create','uses'=> 'WarningsController@create']);
+                Route::post('warnings/store',['as'=>'warnings.store','uses'=> 'WarningsController@store']);
+                Route::get('warnings/edit/{id}',['as'=>'warnings.edit','uses'=> 'WarningsController@edit']);
+                Route::post('warnings/update/{id}',['as'=>'warnings.update','uses'=> 'WarningsController@update']);
 
                 //protocolsFiles
                 Route::get('protocolsfile/{id}',['as'=>'protocolsfile.index','uses'=> 'ProtocolsFileController@index']);
@@ -110,9 +128,25 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('deliverablefiles/destroy/{id}',['as'=>'deliverablefiles.destroy','uses'=> 'DeliverableFilesController@destroy']);
 
 
+
+                //Deliverables
                 Route::get('projects',['as'=>'projects.index','uses'=> 'ProjectsController@index']);
+                Route::get('projects/create',['as'=>'projects.create','uses'=> 'ProjectsController@create']);
+                Route::post('projects/store',['as'=>'projects.store','uses'=> 'ProjectsController@store']);
                 Route::get('projects/edit/{id}',['as'=>'projects.edit','uses'=> 'ProjectsController@edit']);
                 Route::post('projects/update/{id}',['as'=>'projects.update','uses'=> 'ProjectsController@update']);
+                Route::get('projects/destroy/{id}',['as'=>'projects.destroy','uses'=> 'ProjectsController@destroy']);
+
+                //contato
+                Route::get('contacts/index',['as'=>'contacts.index','uses'=> 'ContactsController@index']);
+                Route::get('contacts/open',['as'=>'contacts.open','uses'=> 'ContactsController@open']);
+                Route::post('contacts/update/{id}',['as'=>'contacts.update','uses'=> 'ContactsController@update']);
+
+                //recursos
+                Route::get('appeals/index/{id}',['as'=>'appeals.index','uses'=> 'AppealsController@index']);
+                Route::get('appeals/open/{id}',['as'=>'appeals.open','uses'=> 'AppealsController@open']);
+                Route::post('appeals/update/{id}',['as'=>'appeals.update','uses'=> 'AppealsController@update']);
+
             });
 
 });

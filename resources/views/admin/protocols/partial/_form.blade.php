@@ -20,6 +20,7 @@
     <label class="radio-inline">{{ Form::radio('status', '1') }}Inscrição</label>
     <label class="radio-inline">{{ Form::radio('status', '2') }}Publicações</label>
     <label class="radio-inline">{{ Form::radio('status', '3') }}Avisos</label>
+    <label class="radio-inline">{{ Form::radio('status', '4') }}Arquivo (finalizado)</label>
     <hr>
 </div>
 

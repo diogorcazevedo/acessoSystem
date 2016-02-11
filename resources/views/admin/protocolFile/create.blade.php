@@ -7,7 +7,7 @@
 
         @include('errors._check')
 
-    {!! Form::open(['route'=>['admin.protocolsfile.store',$protocol->id],'method'=>'post','enctype'=>'multipart/form-data']) !!}
+        {!! Form::open(['route'=>['admin.protocolsfile.store',$protocol->id],'method'=>'post','enctype'=>'multipart/form-data']) !!}
 
         @include('admin.protocolFile.partial._formUpload')
 
@@ -17,8 +17,8 @@
         </div>
 
 
-    {!! Form::close()!!}
- </div>
+        {!! Form::close()!!}
+    </div>
 
 
 @endsection

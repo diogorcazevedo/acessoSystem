@@ -53,6 +53,11 @@ return [
             'root'   => public_path().'/uploads/protocols'
         ],
 
+        'local_contacts' => [
+            'driver' => 'local',
+            'root'   => public_path().'/uploads/contacts'
+        ],
+
         'local_deliverables' => [
             'driver' => 'local',
             'root'   => public_path().'/uploads/deliverables'

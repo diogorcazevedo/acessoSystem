@@ -19,11 +19,11 @@
     </div>
     <div class="seta"></div>
     <div class="container-fluid">
+        <div class="col-lg-12">
         <!-- Editais -->
         <div class="col-lg-offset-1 col-lg-7">
             <div class="row">
-                @if(!empty($opens))
-
+                @if(count($opens) !=0)
                         <!-- Abertos -->
                 <div class="col-lg-12">
                     <section>
@@ -39,19 +39,22 @@
                                     @endforeach
                                 </div>
                                 <div class="col-lg-8">
-                                    <a href="#">
                                         <h4>
                                             {{$open->name}}<br/>
                                             <small>{{$open->description}}</small>
                                         </h4>
-                                    </a>
+                                   <p>
+                                       <a href="{{route('home.publish',['id'=>$open->id])}}" class="btn btn-blue">Inscrição</a>
+                                       <a href="{{route('home.publish',['id'=>$open->id])}}" class="btn btn-warning">editais e publicações</a>
+                                   </p>
+
                                 </div>
                             </div>
                         @endforeach
                     </section>
                 </div>
                 @endif
-                @if(!empty($publishs))
+                @if(count($publishs) != 0)
                         <!-- publicacoes -->
                 <div class="col-lg-12">
                     <section>
@@ -67,12 +70,13 @@
                                     @endforeach
                                 </div>
                                 <div class="col-lg-8">
-                                    <a href="{{route('home.publish',['id'=>$publish->id])}}">
-                                        <h4>
-                                            {{$publish->name}}<br/>
-                                            <small>{{$publish->description}}</small>
-                                        </h4>
-                                    </a>
+                                    <h4>
+                                        {{$publish->name}}<br/>
+                                        <small>{{$publish->description}}</small>
+                                    </h4>
+                                    <p>
+                                        <a href="{{route('home.publish',['id'=>$publish->id])}}" class="btn btn-warning">editais e publicações</a>
+                                    </p>
                                 </div>
                             </div>
                         @endforeach
@@ -82,33 +86,56 @@
             </div>
         </div>
         <div class="col-lg-3">
+            @if(count($warnings) != 0)
             <section>
                 <blockquote>
                 <h2 class="meio">Avisos:</h2>
                 </blockquote>
-                @if(!empty($warnings))
                     @foreach($warnings as $warning)
                         <div class="col-lg-offset-1 col-lg-11 wellwhite well-sm">
                             <div class="col-lg-3">
-                                @foreach($warning->files as $file)
+                                @foreach($warning->protocol->files as $file)
                                     @if($file->type == 1)
-                                        <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"/>
+                                        <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}" width="60" height="60"/>
                                     @endif
                                 @endforeach
                             </div>
-                            <div class="col-lg-8">
-                                <a href="#">
-                                    <h4>
-                                        {{$warning->name}}<br/>
-                                        <small>{{$warning->description}}</small>
-                                    </h4>
+                            <div class="col-lg-offset-1 col-lg-8">
+                                <a href="{{route('home.publish',['id'=>$warning->protocol->id])}}">
+                                    <p>{{$warning->name}}</p>
+                                    <p><small>{{$warning->description}}</small></p>
                                 </a>
                             </div>
                         </div>
                     @endforeach
-                @endif
-
            </section>
+            @endif
+                @if(count($finishs) != 0)
+                    <section>
+                        <blockquote>
+                            <h2 class="meio">Concursos Finalizados:</h2>
+                        </blockquote>
+                        @foreach($finishs as $finish)
+                            <div class="col-lg-offset-1 col-lg-11 wellwhite well-sm">
+                                <div class="col-lg-3">
+                                    @foreach($finish->files as $file)
+                                        @if($file->type == 1)
+                                            <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}" width="60" height="60"/>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="col-lg-offset-1 col-lg-8">
+                                    <a href="{{route('home.publish',['id'=>$finish->id])}}">
+                                        <p>
+                                            {{$finish->name}}<br/>
+                                            <small>{{$finish->description}}</small>
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </section>
+                @endif
         </div>
     </div>
     </div>

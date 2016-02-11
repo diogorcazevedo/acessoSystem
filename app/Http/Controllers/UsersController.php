@@ -31,27 +31,33 @@ class UsersController extends Controller
      * @var ClientService
      */
     private $clientService;
+    /**
+     * @var User
+     */
+    private $user;
 
 
-    public function __construct(UserRepository $repository, ClientRepository $clientRepository, ClientService $clientService)
+    public function __construct(UserRepository $repository,
+                                ClientRepository $clientRepository,
+                                ClientService $clientService,
+                                User $user)
 
     {
         $this->repository = $repository;
         $this->clientRepository = $clientRepository;
         $this->clientService = $clientService;
+        $this->user = $user;
     }
 
 
     public function index(Request $requests)
     {
         $users = $this->repository->paginate(5);
-        $name = $requests->input('name');
-        $email = $requests->input('email');
-        if (!empty($name)) {
-            $users = User::where('name', 'LIKE', '%' . $name . '%')->paginate(5);
-        }
-        if (!empty($email)) {
-            $users = User::where('email', 'LIKE', '%' . $email . '%')->paginate(5);
+        $source = $requests->input('source');
+        if (!empty($source)) {
+            $users = $this->user->where('name', 'LIKE', '%' . $source . '%')
+                                ->orWhere('email', 'LIKE', '%' . $source . '%')
+                                ->paginate(5);
         }
         $users->setPath('users');
 

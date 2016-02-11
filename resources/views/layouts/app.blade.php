@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Correção Acesso</title>
+    <title>Acesso Público</title>
 
     <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
     <!-- Styles -->
@@ -24,14 +24,16 @@
                     <div class="shop-menu pull-left">
                         <ul class="nav navbar-nav">
                                 @if(auth()->guest())
-                                    <li><a href="{{ route('layout.client')}}">Minhas correções</a></li>
+                                    <li><a href="{{ route('home')}}">Voltar</a></li>
                                 @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="logo pull-left">
+                        <a href="{{route('home')}}">
                         <img class="img-responsive" src="{{url('img/logo.png')}}" alt="" />
+                        </a>
                     </div>
 
                 </div>
