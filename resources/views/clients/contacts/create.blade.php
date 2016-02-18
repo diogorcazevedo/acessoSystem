@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('app')
 
 @section('content')
     <div class="container">
@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     {!! Form::open(['route'=>['contacts.store'],'method'=>'post','enctype'=>'multipart/form-data']) !!}
 
-                    @include('admin.contacts.partial._form')
+                    @include('clients.contacts.partial._form')
 
                     <div class="form-group col-lg-offset-2 col-lg-8">
                         {!! Form::submit('Enviar',['class'=>'btn btn-primary']) !!}

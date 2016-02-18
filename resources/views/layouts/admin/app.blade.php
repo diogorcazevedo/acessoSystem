@@ -10,6 +10,7 @@
     <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
 </head>
@@ -20,14 +21,14 @@
 <div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
     <div class="container">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-lg-9">
                 <div class="shop-menu pull-left">
                     @if(Auth::user())
                         @if(Auth::user()->role == 'admin' or Auth::user()->role == 'coach' or Auth::user()->role == 'master')
-                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                <div class="btn-group" role="group">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <div class="btn-group col-lg-1" role="group">
                                     <a href="{{ route('admin.layout.admin')}}" type="button"
-                                       class="btn btn-blue">HOME</a>
+                                       class="btn btn-blue"><i class="fa fa-home"></i></a>
                                 </div>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
@@ -39,7 +40,30 @@
                                         <li><a href="{{ route('admin.users.index')}}">Listar Todos</a></li>
                                     </ul>
                                 </div>
-
+                                @can('permissions_all')
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        PERMISSÕES
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @can('manager_admin')
+                                        <li><a href="{{ route('admin.managers.index')}}">Nível Usuários</a></li>
+                                        <br/>
+                                        @endcan
+                                        @can('role_admin')
+                                        <li><a href="{{ route('admin.roles.index')}}">Níveis</a></li>
+                                        <br/>
+                                        @endcan
+                                        @can('permission_admin')
+                                        <li><a href="{{ route('admin.permissions.index')}}">Permissões</a></li>
+                                        <br/>
+                                        @endcan
+                                    </ul>
+                                </div>
+                                @endcan
+                                @can('sponsor_all')
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
@@ -54,7 +78,7 @@
                                         </li>
                                     </ul>
                                 </div>
-
+                                @endcan
 
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
@@ -76,7 +100,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('admin.contacts.open')}}">Contatos abertos</a></li>
+                                        <li><a href="{{ route('admin.contacts.open')}}">Responder</a></li>
                                         <li><a href="{{ route('admin.contacts.index')}}">listar todos</a></li>
                                     </ul>
                                 </div>
@@ -92,13 +116,13 @@
                     </a>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="shop-menu pull-right">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group" aria-label="...">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                Meus dados
+                                <i class="fa fa-user"></i>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">

@@ -27,13 +27,18 @@ class ContactService
      * @var Contact
      */
     private $contactt;
+    /**
+     * @var EmailService
+     */
+    private $emailService;
 
-    public function __construct(ContactRepository $repository, Contact $contact)
+    public function __construct(ContactRepository $repository, Contact $contact, EmailService $emailService)
     {
 
 
         $this->repository = $repository;
         $this->contact = $contact;
+        $this->emailService = $emailService;
     }
 
     public function store($request)
@@ -100,5 +105,32 @@ class ContactService
                 }
             }
     }
+
+
+    public function returnContact($data,$id)
+    {
+            \DB::beginTransaction();
+            try {
+                $contact =$this->repository->find($data['id']);
+                $info = [
+                    'email' => $contact->email,
+                    'name' =>$contact->name,
+                    'return'=>$data['return']
+                ];
+                $this->emailService->sendEmailContact($info);
+                $data['status'] = 1;
+                $data['user_id'] = auth()->user()->id;
+                $this->repository->update($data, $id);
+                Session::put('success', 'Contato enviado com sucesso!');
+                \DB::commit();
+            } catch (\Exception $e) {
+                \DB::rollback();
+                throw $e;
+            }
+
+
+
+    }
+
 
 }

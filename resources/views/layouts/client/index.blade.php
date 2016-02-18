@@ -15,9 +15,9 @@
 
         <div style="margin-top: 8%; margin-bottom: 5%;" class="container-fluid">
             <div class="content well col-lg-12">
-                <div style="width: 50%; margin-bottom: 2%;" class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-blue">Gerenciar meus concursos (inscrições já realizadas)</button>
+                <div style="margin-bottom: 2%;" class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group col-lg-5" role="group">
+                        <button type="button" class="btn btn-blue">Gerenciar meus concursos (inscrições confirmadas)</button>
                     </div>
                 </div>
                 <div class="shop-menu">

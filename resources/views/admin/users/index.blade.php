@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     {!! Form::label('Pesquisar','Pesquisar:') !!}
-                    {!! Form::text('source',null,['class'=>'form-control']) !!}
+                    {!! Form::text('search',null,['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">

@@ -15,7 +15,7 @@
 
         <div class="form-group">
 
-            {!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
         </div>
 
 

@@ -18,6 +18,7 @@ $factory->define(acessoSystem\Entities\User::class, function (Faker\Generator $f
         'email' => $faker->email,
         'cpf' => str_random(11),
         'identity'=>$faker->randomDigit,
+        'dispatcher'=>$faker->word,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
 
@@ -114,3 +115,18 @@ $factory->define(acessoSystem\Entities\Appeal::class, function (Faker\Generator 
 
     ];
 });
+
+$factory->define(acessoSystem\Entities\Permission::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->sentence,
+    ];
+});
+
+$factory->define(acessoSystem\Entities\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->sentence,
+    ];
+});
+

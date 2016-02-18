@@ -3,6 +3,9 @@
 namespace acessoSystem\Http\Controllers\Auth;
 
 use acessoSystem\Entities\User;
+use acessoSystem\Repositories\RoleRepository;
+use acessoSystem\Services\AuthService;
+use acessoSystem\Validators\UserValidator;
 use Illuminate\Support\Facades\Validator;
 use acessoSystem\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -31,15 +34,30 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/login';
+    /**
+     * @var AuthService
+     */
+    private $authService;
+    /**
+     * @var RoleRepository
+     */
+    private $roleRepository;
+    /**
+     * @var UserValidator
+     */
+    private $userValidator;
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService, RoleRepository $roleRepository,UserValidator $userValidator)
     {
         $this->middleware('guest', ['except' => 'logout']);
+        $this->authService = $authService;
+        $this->roleRepository = $roleRepository;
+        $this->userValidator = $userValidator;
     }
 
     /**
@@ -50,29 +68,7 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name'                         => 'required|max:255|regex:/^[\pL\s\-]+$/u',
-            'email'                        => 'required|email|max:255|unique:users',
-            'cpf'                          => 'required|max:255|unique:users',
-            'password'                     => 'required|confirmed|min:6',
-            'identity'                     =>'required',
-            'birthdate'                    =>'required',
-            'phone'                        =>'required',
-            'cel'                          =>'required',
-            'gender'                       =>'required',
-            'maritalstatus'                =>'required',
-            'mother'                       =>'required',
-            'father'                       =>'required',
-            'nationality'                  =>'required',
-            'naturality'                   =>'required',
-            'children'                     =>'required',
-            'zipcode'                      =>'required',
-            'address'                      =>'required',
-            'neighborhood'                 =>'required',
-            'complement'                   =>'required',
-            'city'                         =>'required',
-            'state'                        =>'required',
-        ]);
+        return Validator::make($data,$this->userValidator->rules(),$this->userValidator->messages());
     }
 
     /**
@@ -86,25 +82,28 @@ class AuthController extends Controller
 
         \DB::beginTransaction();
         try {
+        $password = bcrypt($data['password']);
+
         $user = User::create([
-                    'name'                  => $data['name'],
+                    'name'                  => mb_strtoupper($data['name']),
                     'email'                 => $data['email'],
                     'cpf'                   => $data['cpf'],
                     'identity'              => $data['identity'],
-                    'password'              => bcrypt($data['password']),
+                    'password'              => $password,
                 ]);
 
         $data['user_id'] = $user['id'];
+        $birthdate = implode("-",array_reverse(explode("-",$data['birthdate'])));
 
                 Client::create([
                     'user_id'               => $data['user_id'],
-                    'birthdate'             => $data['birthdate'],
+                    'birthdate'             => $birthdate,
                     'phone'                 => $data['phone'],
                     'cel'                   => $data['cel'],
                     'gender'                => $data['gender'],
                     'maritalstatus'         => $data['maritalstatus'],
-                    'mother'                => $data['mother'],
-                    'father'                => $data['father'],
+                    'mother'                => mb_strtoupper($data['mother']),
+                    'father'                => mb_strtoupper($data['father']),
                     'nationality'           => $data['nationality'],
                     'naturality'            => $data['naturality'],
                     'children'              => $data['children'],
@@ -117,7 +116,13 @@ class AuthController extends Controller
 
                 ]);
 
+                    $role = $this->roleRepository->find(5);
+                    $user->addRole($role);
+
             \DB::commit();
+
+                $this->authService->passwordSend($data);
+
         } catch (\Exception $e) {
             \DB::rollback();
             throw $e;

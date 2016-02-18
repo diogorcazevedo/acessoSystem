@@ -78,5 +78,13 @@ class RepositoryServiceProvider extends ServiceProvider
             'acessoSystem\Repositories\WarningRepository',
             'acessoSystem\Repositories\WarningRepositoryEloquent'
         );
+        $this->app->bind(
+            'acessoSystem\Repositories\RoleRepository',
+            'acessoSystem\Repositories\RoleRepositoryEloquent'
+        );
+        $this->app->bind(
+            'acessoSystem\Repositories\PermissionRepository',
+            'acessoSystem\Repositories\PermissionRepositoryEloquent'
+        );
     }
 }

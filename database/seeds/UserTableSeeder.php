@@ -15,12 +15,16 @@ class UserTableSeeder extends Seeder
     {
 
 
+        //ADMs do SISTEMA
+
         factory(User::class)->create([
             'name' => 'Diogo',
             'email' => 'diogorcazevedo@gmail.com',
             'password' => bcrypt(123456),
             'cpf' => '09253283750',
-            'role' => 'master',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
+            'role' => 'admin',
             'remember_token' => str_random(10),
         ])->client()->save(factory(Client::class)->make());
 
@@ -30,28 +34,66 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt(123456),
             'cpf' => '09253283751',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
             'role' => 'admin',
             'remember_token' => str_random(10),
         ])->client()->save(factory(Client::class)->make());
 
 
         factory(User::class)->create([
-            'name' => 'Coach',
-            'email' => 'coach@gmail.com',
+            'name' => 'manager',
+            'email' => 'manager@gmail.com',
             'password' => bcrypt(123456),
-            'cpf' => '09253283752',
-            'role' => 'coach',
+            'cpf' => '09253283722',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
+            'role' => 'admin',
             'remember_token' => str_random(10),
         ])->client()->save(factory(Client::class)->make());
 
 
         factory(User::class)->create([
-            'name' => 'user',
-            'email' => 'user@gmail.com',
+            'name' => 'Supervisor',
+            'email' => 'supervisor@gmail.com',
             'password' => bcrypt(123456),
-            'cpf' => '09253283753',
+            'cpf' => '09253283732',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
+            'role' => 'admin',
             'remember_token' => str_random(10),
         ])->client()->save(factory(Client::class)->make());
+
+
+
+
+        //CLIENTS do SISTEMA
+
+
+        factory(User::class)->create([
+            'name' => 'client',
+            'email' => 'client@gmail.com',
+            'password' => bcrypt(123456),
+            'cpf' => '09253283753',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
+            'role' => 'client',
+            'remember_token' => str_random(10),
+        ])->client()->save(factory(Client::class)->make());
+
+
+        factory(User::class)->create([
+            'name' => 'Contest',
+            'email' => 'contest@gmail.com',
+            'password' => bcrypt(123456),
+            'cpf' => '09253283753',
+            'identity' => '127954097',
+            'dispatcher' => 'IFP-RJ',
+            'role' => 'client',
+            'remember_token' => str_random(10),
+        ])->client()->save(factory(Client::class)->make());
+
+
 
 
         factory(User::class, 10)->create()->each(function ($u) {
