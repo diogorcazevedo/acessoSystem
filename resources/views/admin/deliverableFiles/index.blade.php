@@ -1,13 +1,11 @@
 @extends('layouts.admin.app')
 
-
 @section('content')
-    <div class="container">
-        <hr class="hrstyle">
-        <h4 class="text-center">Documentos: {{$deliverable->name}}</h4>
-        <hr class="hrstyle">
+        <hr>
+        <h4 class="text-uppercase">Documentos: {{$deliverable->name}}</h4>
+        <hr>
         <br/>
-        <a href="{{route('admin.deliverablefiles.create',['id'=>$deliverable->id])}}" class="btn btn-primary">Novo Documento</a>
+        <a href="{{route('admin.deliverablefiles.create',['id'=>$deliverable->id])}}" class="btn btn-warning">Novo Documento</a>
         <br/>
         <br/>
 
@@ -33,7 +31,7 @@
                 <td>{{$file->file}}</td>
                 <td>{{$file->extension}}</td>
                 <td>
-                    <a href="{{route('admin.deliverablefiles.destroy',['id'=>$file->id])}}" class="btn-sm btn btn-orange">
+                    <a href="{{route('admin.deliverablefiles.destroy',['id'=>$file->id])}}" class="btn-sm btn btn-danger">
                         Delete
                     </a>
                 </td>
@@ -41,8 +39,6 @@
             @endforeach
             </tbody>
         </table>
-<a href="{{route('admin.deliverables.index')}}" class="btn btn-primary">Voltar para Etapas</a>
-    </div>
-
+<a href="{{route('admin.deliverables.index')}}" class="btn gray">Voltar para Publicações</a>
 
 @endsection

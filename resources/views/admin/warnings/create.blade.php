@@ -1,9 +1,8 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
         <hr class="hrstyle">
-        <h3 class="text-center">Novo Aviso</h3>
+        <h3 class="text-uppercase">Novo Aviso</h3>
         <hr class="hrstyle">
 
         @include('errors._check')
@@ -19,7 +18,5 @@
 
 
     {!! Form::close()!!}
- </div>
-
 
 @endsection

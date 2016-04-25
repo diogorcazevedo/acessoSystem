@@ -52,6 +52,22 @@ function arrayfilhos()
 
 }
 
+
+function arraynecessidades()
+{
+
+    return [
+        "Ledor" => "Ledor",
+        "Transcritor" => "Transcritor",
+        "Lactante" => "Lactante",
+        "Fácil acesso" => "Fácil acesso",
+        "outros" => "Outros"
+    ];
+
+}
+
+
+
 function birthdate($birthdate)
 {
 
@@ -60,6 +76,23 @@ function birthdate($birthdate)
 }
 
 
+function primeiroNome($nome){
+    $nome_usuario = explode(" ", $nome);
+    return $nome_usuario['0'];
+}
+
+
+function removerAcentor($string) {
+
+    // matriz de entrada
+    $what = array( 'ä','ã','à','á','â','ê','ë','è','é','ï','ì','í','ö','õ','ò','ó','ô','ü','ù','ú','û','À','Á','É','Í','Ó','Ú','ñ','Ñ','ç','Ç','-','(',')',',',';',':','|','!','"','#','$','%','&','/','=','?','~','^','>','<','ª','º',"'");
+
+    // matriz de saída
+    $by   = array( 'a','a','a','a','a','e','e','e','e','i','i','i','o','o','o','o','o','u','u','u','u','A','A','E','I','O','U','n','n','c','C','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'," " );
+
+    // devolver a string
+    return str_replace($what, $by, $string);
+}
 
 
 

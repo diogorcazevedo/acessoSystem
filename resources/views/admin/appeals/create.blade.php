@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
         @include('errors._check')
         <div class="panel panel-default" style="padding: 5%;">
             <div class="wellwhite">
@@ -30,5 +29,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

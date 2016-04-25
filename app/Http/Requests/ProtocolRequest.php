@@ -30,6 +30,7 @@ class ProtocolRequest extends Request
             'description'=>'required',
             'progress'=>'required',
             'status'=>'required',
+            'protocol_number'=> 'required|regex:/^[0-9\-!,\'\"\/@\.:\(\)]+$/',
         ];
     }
 }

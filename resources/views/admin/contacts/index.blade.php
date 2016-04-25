@@ -1,42 +1,15 @@
 @extends('layouts.admin.app')
 @section('content')
-    @if(Session::has('success'))
-        <div style="margin-bottom: 2%;" class="col-lg-offset-1 col-sm-10 padding-right">
-            <div class="features_items">
-                <ul class="list-group">
-                    <li class="list-group-item listback text-center">{{Session::get('success')}}</li>
-                </ul>
-            </div>
-        </div>
-        {{Session::forget('success')}}
-    @endif
-
-    <div style="margin-bottom: 5%;" class="col-lg-offset-1 col-lg-10 padding-right">
-        <hr class="hrstyle">
-        <h4 class="text-center">Contatos dos Candidatos</h4>
-        <hr class="hrstyle">
-        <br/>
-        <a href=" {{route('admin.layout.admin')}}" class="btn btn-primary ">Voltar</a>
-        <br/>
+        <hr>
+        <h4 class="text-uppercase">Contatos dos Candidatos</h4>
+        <hr >
         <br/>
 
         <table class="table table-bordered">
 
             {!! Form::open(['route'=>'admin.contacts.index','method'=>'GET']) !!}
 
-            <div class="pull-right form-inline">
-
-                <div class="form-group">
-                    {!! Form::label('Pesquisar','Pesquisar:') !!}
-                    {!! Form::text('source',null,['class'=>'form-control']) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::submit('Pesquisar',['class'=>'btn btn-warning']) !!}
-                </div>
-                <br/>
-                <br/>
-            </div>
+            @include('admin.search._partial')
 
 
             {!! Form::close()!!}
@@ -76,7 +49,4 @@
         </table>
 
         {!! $contacts->render() !!}
-
-    </div>
-
 @endsection

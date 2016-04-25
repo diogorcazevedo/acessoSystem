@@ -78,7 +78,7 @@ $factory->define(acessoSystem\Entities\Project::class, function (Faker\Generator
         'age'=>$faker->word,
         'tax'=>$faker->numberBetween(100,50),
         'description'=>$faker->sentence,
-        'register' => 1,
+        'registers' => 1,
         'status' => rand(1,3),
     ];
 });
@@ -97,9 +97,6 @@ $factory->define(acessoSystem\Entities\Contact::class, function (Faker\Generator
 
     ];
 });
-
-
-
 
 
 

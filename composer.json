@@ -13,7 +13,10 @@
         "laravelcollective/html": "5.2.*",
         "prettus/laravel-validation": "1.1.*",
         "barryvdh/laravel-debugbar": "^2.1",
-        "barryvdh/laravel-dompdf": "^0.6.1"
+        "barryvdh/laravel-dompdf": "^0.6.1",
+        "maatwebsite/excel": "^2.1",
+        "soapbox/laravel-formatter": "^2.0",
+        "kriansa/openboleto": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

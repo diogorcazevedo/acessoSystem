@@ -1,8 +1,9 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div style="margin-bottom: 5%;" class="col-lg-offset-2 col-sm-8 padding-right">
-        <h3>Editar Cliente: {{$user->name}}</h3>
+        <hr class="hrstyle">
+        <h4 class="text-uppercase">Editar Senha: {{$user->name}}</h4>
+        <hr class="hrstyle">
 
         @include('errors._check')
 
@@ -18,7 +19,5 @@
 
 
     {!! Form::close()!!}
- </div>
-
 
 @endsection

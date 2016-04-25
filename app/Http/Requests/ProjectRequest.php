@@ -29,7 +29,10 @@ class ProjectRequest extends Request
             'name'=>'required',
             'schooling'=>'required',
             'tax'=>'required',
-            'register'=>'required'
+            'reserve'=>'required',
+            'handicapped'=>'required',
+            'quota'=>'required',
+            'needs'=>'required',
         ];
     }
 }

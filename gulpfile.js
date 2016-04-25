@@ -48,6 +48,7 @@ config.vendor_path_js = [
     config.bower_path + '/js/main.js',
     config.bower_path + '/js/html5shiv.min.js',
     config.bower_path + '/js/jquery.mask.min.js',
+    config.bower_path + '/js/cep.js',
 ];
 
 

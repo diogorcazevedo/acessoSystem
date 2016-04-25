@@ -1,213 +1,136 @@
 @extends('layouts.client.app')
 
 @section('content')
-    @if(Auth::user()->role == 'client')
-        @if(Session::has('success'))
-            <div style="margin-top: 5%; margin-bottom: 5%;" class="col-sm-12 padding-right">
-                <div class="features_items">
-                    <ul class="list-group">
-                        <li class="list-group-item listback text-center">{{Session::get('success')}}</li>
-                    </ul>
-                </div>
-            </div>
-            {{Session::forget('success')}}
-        @endif
+    @include('layouts.site_structure.msg.alerts')
+    <hr class="hrstyle">
+    <br/>
+    <div class="col-lg-2">
+        <p class="alert gray text-center">INSCRIÇÕES PARA O CANDIDATO</p>
+    </div>
+    <div class="col-lg-10">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Concorrência</th>
+                <th>Boleto</th>
+                <th>Isenção</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($entries as $entry)
+                <tr>
+                    <td>{{$entry->id}}</td>
+                    <td>{{$entry->user->name}}</td>
+                    <td>{{$entry->project->name}}</td>
+                    <td>
 
-        <div style="margin-top: 8%; margin-bottom: 5%;" class="container-fluid">
-            <div class="content well col-lg-12">
-                <div style="margin-bottom: 2%;" class="btn-group" role="group" aria-label="...">
-                    <div class="btn-group col-lg-5" role="group">
-                        <button type="button" class="btn btn-blue">Gerenciar meus concursos (inscrições confirmadas)</button>
+                        <?php
+                        switch ($entry->project->banking->bank) {
+                            case 1:
+                                ?>
+                                <a href="{{route('bradesco.toview',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Imprimir Boleto
+                                </a>
+                                <a href="{{route('bradesco.toprint',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Visualizar Boleto
+                                </a>
+                                <?php
+                                break;
+                            case 2:
+                            ?>
+                            <a href="{{route('bradesco.toview',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                Imprimir Boleto
+                            </a>
+                            <a href="{{route('bradesco.toprint',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                Visualizar Boleto
+                            </a>
+                            <?php
+                                break;
+                            case 3:
+                            ?>
+                            <a href="{{route('bradesco.toview',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                Imprimir Boleto
+                            </a>
+                            <a href="{{route('bradesco.toprint',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                Visualizar Boleto
+                            </a>
+                            <?php
+                                break;
+                            case 4:
+                                ?>
+                                <a href="{{route('bradesco.toview',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Imprimir Boleto
+                                </a>
+                                <a href="{{route('bradesco.toprint',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Visualizar Boleto
+                                </a>
+                                <?php
+                                break;
+                            case 5:
+                                ?>
+                                <a href="{{route('bradesco.toview',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Imprimir Boleto
+                                </a>
+                                <a href="{{route('bradesco.toprint',[$entry->id])}}" class="btn-sm btn btn-warning">
+                                    Visualizar Boleto
+                                </a>
+                                <?php
+                                break;
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div class="col-lg-6">
+                            <a href="{{route('frees.create',[$entry->user->id,$entry->id])}}" class="btn-sm btn gray">
+                                Solicitar isenção <br/> Taxa de Inscrição
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="{{route('frees.edit',['id'=>$entry->user->id])}}" class="btn-sm btn gray">
+                                Recurso isenção <br/>  Taxa de Inscrição
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        <br/><br/><br/>
+    </div>
+
+    <hr class="hrstyle" style="clear: both;">
+    <div class="col-lg-2">
+        <p class="alert gray text-center">CONCURSOS ABERTOS</p>
+    </div>
+    <div class="wellwhite well-sm col-lg-10">
+        @forelse($protocols as $protocol)
+            <div class="well well-sm col-lg-6">
+                <div class="wellwhite well-sm col-lg-12">
+                    <div class="col-lg-3">
+                        @foreach($protocol->files as $file)
+                            @if($file->type == 1)
+                                <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"/>
+                            @endif
+                        @endforeach
                     </div>
-                </div>
-                <div class="shop-menu">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                CARGOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BOLETOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ISENÇÕES
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                RECURSOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ALOCAÇÃO
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                OBJETIVA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                DISCURSIVA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FÍSICA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                PRÁTICA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                TÍTULOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="col-lg-9">
+                        <h4 class="well">
+                            {{$protocol->name}}<br/>
+                            <small>{{$protocol->description}}</small>
+                        </h4>
+                        @foreach($protocol->projects as $projects)
+                            <p class="wellwhite">
+                                {{$projects->name}}<br/>
+                                <small>{{$projects->description}}</small>
+                            </p>
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <!-- inscricoes -->
-        <div class="container-fluid">
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        Concursos
-                    </a>
-                    @foreach($all as $regulament)
-                        <a href="{{route('home.publish',['id'=>$regulament->id])}}"
-                           class="list-group-item">{{$regulament->name}}</a>
-                    @endforeach
-                </div>
-            </div>
-            <div class="wellwhite well-sm col-lg-offset-1 col-lg-8">
-                <div style="margin-bottom: 2%;" class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-blue">Novas Inscrições</button>
-                        <p style="float: left;">OBS: Caso o candidato já tenha realizado inscrição para o cargo, use as opções acima. O Sistema não permite duas inscrições para o mesmo cargo</p>
-                    </div>
-                </div>
-                @forelse($protocols as $protocol)
-                    <h4 class="wellwhite">Inscrições Abertas:</h4>
-                    <div class="well well-sm col-lg-6">
-                        <div class="wellwhite well-sm col-lg-12">
-                            <div class="col-lg-3">
-                                @foreach($protocol->files as $file)
-                                    @if($file->type == 1)
-                                        <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"/>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="col-lg-9">
-                                <h4 class="well">
-                                    {{$protocol->name}}<br/>
-                                    <small>{{$protocol->description}}</small>
-                                </h4>
-                                @foreach($protocol->projects as $projects)
-                                    <p class="wellwhite">
-                                        {{$projects->name}}<br/>
-                                        <small>{{$projects->description}}</small>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <h4 class="wellwhite">Sem inscrições abertas no momento</h4>
-                @endforelse
-            </div>
-        </div>
-    @endif
+        @empty
+            <h4 class="wellwhite">Sem inscrições abertas no momento</h4>
+        @endforelse
+    </div>
 @endsection

@@ -1,12 +1,11 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
-        <hr class="hrstyle">
-        <h4 class="text-center">Administrações e Orgãos</h4>
-        <hr class="hrstyle">
+        <hr>
+        <h4 class="text-uppercase">Administrações e Orgãos</h4>
+        <hr>
         <br/>
-        <a href="{{route('admin.sponsors.create')}}"class="btn btn-primary">Nova Administração</a>
+        <a href="{{route('bancas')}}"class="btn gray">Nova Administração</a>
         <br/>
         <br/>
 
@@ -16,6 +15,7 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Ação</th>
+                <th>Próximo Passo</th>
             </tr>
             </thead>
             <tbody>
@@ -24,8 +24,13 @@
                 <td>{{$sponsor->id}}</td>
                 <td>{{$sponsor->name}}</td>
                 <td>
-                    <a href="{{route('admin.sponsors.edit',['id'=>$sponsor->id])}}" class="btn btn-orange">
+                    <a href="{{route('bancas',['id'=>$sponsor->id])}}" class="btn gray">
                         Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="{{route('admin.protocols.create',['id'=>$sponsor->id])}}" class="btn btn-warning">
+                        Criar Edital
                     </a>
                 </td>
             </tr>
@@ -33,8 +38,4 @@
             </tbody>
         </table>
         {!! $sponsors->render() !!}
-
-    </div>
-
-
 @endsection

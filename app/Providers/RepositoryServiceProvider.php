@@ -86,5 +86,21 @@ class RepositoryServiceProvider extends ServiceProvider
             'acessoSystem\Repositories\PermissionRepository',
             'acessoSystem\Repositories\PermissionRepositoryEloquent'
         );
+        $this->app->bind(
+            'acessoSystem\Repositories\EntryRepository',
+            'acessoSystem\Repositories\EntryRepositoryEloquent'
+        );
+        $this->app->bind(
+            'acessoSystem\Repositories\FreeRepository',
+            'acessoSystem\Repositories\FreeRepositoryEloquent'
+        );
+        $this->app->bind(
+            'acessoSystem\Repositories\BankingRepository',
+            'acessoSystem\Repositories\BankingRepositoryEloquent'
+        );
+        $this->app->bind(
+            'acessoSystem\Repositories\BradescoBankingsRepository',
+            'acessoSystem\Repositories\BradescoBankingsRepositoryEloquent'
+        );
     }
 }

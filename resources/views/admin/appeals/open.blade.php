@@ -1,19 +1,7 @@
 @extends('layouts.admin.app')
 @section('content')
-    @if(Session::has('success'))
-        <div style="margin-bottom: 2%;" class="col-lg-offset-1 col-sm-10 padding-right">
-            <div class="features_items">
-                <ul class="list-group">
-                    <li class="list-group-item listback text-center">{{Session::get('success')}}</li>
-                </ul>
-            </div>
-        </div>
-        {{Session::forget('success')}}
-    @endif
-
-    <div style="margin-bottom: 5%;" class="col-lg-offset-1 col-lg-10 padding-right">
         <hr class="hrstyle">
-        <h4 class="text-center">Contatos dos Candidatos</h4>
+        <h4 class="text-uppercase">Contatos dos Candidatos</h4>
         <hr class="hrstyle">
         <br/>
         <a href=" {{route('admin.layout.admin')}}" class="btn btn-primary ">Voltar</a>
@@ -84,7 +72,7 @@
 
         {!! $appeals->render() !!}
 
-    </div>
+
 
     <script type="text/javascript">
         function addFunction(id) {

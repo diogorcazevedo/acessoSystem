@@ -1,176 +1,61 @@
 @extends('layouts.admin.app')
 
+
 @section('content')
+    @include('layouts.site_structure.msg.alerts')
+    <hr class="hrstyle">
+    <h4>PROJETOS</h4>
+    <hr class="hrstyle">
+    <br/>
     @if(Auth::user()->role == 'admin')
-        @if(Session::has('success'))
-            <div style="margin-top: 5%; margin-bottom: 5%;" class="col-sm-12 padding-right">
-                <div class="features_items">
-                    <ul class="list-group">
-                        <li class="list-group-item listback text-center">{{Session::get('success')}}</li>
-                    </ul>
-                </div>
-            </div>
-            {{Session::forget('success')}}
-        @endif
+        @foreach($protocols as $protocol)
+            <div class="col-lg-4 col-md-5">
+                <div class="panel  gray">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-10 title">
+                               <small>{{$protocol->name}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="title">
+                                <a style="height: 30px;" class="btn-default btn-group btn-group-justified text-center" href="#project{{$protocol->id}}" data-toggle="collapse" data-parent="#MainMenu">
+                                    <i class="fa fa-folder-open"></i>
+                                    Concorrências
+                                    <i class="fa fa-arrow-circle-down"></i>
+                                </a>
+                                <ul class="collapse nav" id="project{{$protocol->id}}">
+                                    @foreach($protocol->projects as $project)
 
-        <div style="margin-top: 5%; margin-bottom: 5%;" class="container-fluid">
-            <div class="content wellwhite col-lg-12">
-                <div class="shop-menu">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                INSCRIÇÕES
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                <br/>
-                                <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BOLETOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ISENÇÕES
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                RECURSOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ALOCAÇÃO
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                OBJETIVA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
+                                        <button type="button" class="btn-default btn-group btn-group-justified" data-toggle="modal" data-target="#myModal{{$project->id}}">
+                                            {{$project->name}}
+                                        </button>
 
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                DISCURSIVA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
+                                        <!-- Modal -->
+                                        @include('layouts.admin.modal.select_function',['project'=>$project])
+
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                            <div class="pull-right">
+                                @foreach($protocol->files as $file)
+                                    @if($file->type == 1)
+                                        <img class="img-responsive" src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}" width="60"/>
+                                    @endif
                                 @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FÍSICA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                PRÁTICA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                TÍTULOS
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">TODOS OS EDITAIS</a></li>
-                                @foreach($protocols as $protocol)
-                                    <br/>
-                                    <li><a href="#">{{$protocol->name}}</a></li>
-                                @endforeach
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-       <!-- <div class="container">
-            @foreach($protocols as $protocol)
-                <div class="wellwhite well-sm col-lg-4" style="height: 150px;">
-
-                        <div class="col-lg-3">
-                            @foreach($protocol->files as $file)
-                                @if($file->type == 1)
-                                    <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"/>
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="col-lg-offset-1 col-lg-6">
-                            <p>{{$protocol->name}}</p>
-                            <p> <a href="#" class="btn btn-sm btn-warning">acessar</a></p>
-                        </div>
-
-                </div>
-            @endforeach
-        </div>-->
+        @endforeach
     @endif
+@endsection
+
+
+@section('footer')
+    @include('layouts.admin.footer.nav_footer_logo')
 @endsection

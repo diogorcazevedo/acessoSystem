@@ -1,10 +1,9 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
-        <hr class="hrstyle">
-        <h3 class="text-center">Novo Edital</h3>
-        <hr class="hrstyle">
+        <hr>
+        <h4 class="text-uppercase">Configurar Inscrição</h4>
+        <hr>
 
         @include('errors._check')
 
@@ -14,12 +13,8 @@
 
         <div class="form-group">
 
-            {!! Form::submit('Criar',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Criar',['class'=>'btn btn-warning']) !!}
         </div>
-
-
+        {!! Form::hidden('protocol_id', $id) !!}
     {!! Form::close()!!}
- </div>
-
-
 @endsection

@@ -1,12 +1,9 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
-        <hr class="hrstyle">
-        <h4 class="text-center">Editais</h4>
-        <hr class="hrstyle">
-        <br/>
-        <a href='{{route('admin.protocols.create')}}' class="btn btn-primary">Novo Edital</a>
+        <hr>
+        <h4 class="text-uppercase">Editais</h4>
+        <hr>
         <br/>
         <br/>
 
@@ -16,9 +13,10 @@
                 <th>Id</th>
                 <th>Adminsitração</th>
                 <th>Edital</th>
-                <th>Progresso</th>
+                <th>Número do Edital</th>
                 <th>Status</th>
                 <th>Ações</th>
+                <th>Terceiro Passo</th>
 
             </tr>
             </thead>
@@ -28,14 +26,19 @@
                 <td>{{$protocol->id}}</td>
                 <td>{{$protocol->sponsor->name}}</td>
                 <td>{{$protocol->name}}</td>
-                <td>{{$protocol->progress}}</td>
+                <td>{{$protocol->protocol_number}}</td>
                 <td>{{$protocol->status}}</td>
                 <td>
-                    <a href="{{route('admin.protocols.edit',['id'=>$protocol->id])}}" class="btn btn-orange">
+                    <a href="{{route('admin.protocols.edit',['id'=>$protocol->id])}}" class="btn gray">
                         Editar
                     </a>
-                    <a href="{{route('admin.protocolsfile.index',['id'=>$protocol->id])}}" class="btn btn-primary">
+                    <a href="{{route('admin.protocolsfile.index',['id'=>$protocol->id])}}" class="btn gray">
                         Images
+                    </a>
+                </td>
+                <td>
+                    <a href="{{route('admin.projects.create',['id'=>$protocol->id])}}" class="btn btn-warning">
+                        Criar Inscrição
                     </a>
                 </td>
             </tr>
@@ -43,8 +46,4 @@
             </tbody>
         </table>
         {!! $protocols->render() !!}
-
-    </div>
-
-
 @endsection

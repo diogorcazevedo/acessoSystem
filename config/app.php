@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost/acessoSystem/public/',
+    'url' => 'http://localhost/ist/public/',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +175,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
+    | is started. However, feel free to registers as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */

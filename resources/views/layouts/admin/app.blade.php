@@ -1,176 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Acesso Público</title>
-
-    <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
-</head>
-<!--/head-->
-
+@include('layouts.site_structure.head.admin')
 <body>
+        <div>
+            @include('layouts.admin.menus.left')
+            @include('layouts.admin.menus.top')
 
-<div class="header-middle-layout navbar-fixed-top"><!--header-middle-->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="shop-menu pull-left">
-                    @if(Auth::user())
-                        @if(Auth::user()->role == 'admin' or Auth::user()->role == 'coach' or Auth::user()->role == 'master')
-                            <div class="btn-group" role="group" aria-label="...">
-                                <div class="btn-group col-lg-1" role="group">
-                                    <a href="{{ route('admin.layout.admin')}}" type="button"
-                                       class="btn btn-blue"><i class="fa fa-home"></i></a>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        USUÁRIOS
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('admin.users.index')}}">Listar Todos</a></li>
-                                    </ul>
-                                </div>
-                                @can('permissions_all')
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        PERMISSÕES
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        @can('manager_admin')
-                                        <li><a href="{{ route('admin.managers.index')}}">Nível Usuários</a></li>
-                                        <br/>
-                                        @endcan
-                                        @can('role_admin')
-                                        <li><a href="{{ route('admin.roles.index')}}">Níveis</a></li>
-                                        <br/>
-                                        @endcan
-                                        @can('permission_admin')
-                                        <li><a href="{{ route('admin.permissions.index')}}">Permissões</a></li>
-                                        <br/>
-                                        @endcan
-                                    </ul>
-                                </div>
-                                @endcan
-                                @can('sponsor_all')
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                         EDITAIS
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('admin.sponsors.index')}}">Adminsitrações Públicas</a>
-                                        </li>
-                                        <li><a href="{{ route('admin.protocols.index')}}">Editais de Concurso</a></li>
-                                        <li><a href="{{ route('admin.projects.index')}}">Projetos (concorrências)</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                @endcan
-
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        PUBLICAÇÕES
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('admin.deliverables.index')}}">Etapas do concurso</a></li>
-                                        <li><a href="{{ route('admin.warnings.index')}}">Gerenciar avisos</a></li>
-                                    </ul>
-                                </div>
-
-
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        ATENDIMENTOS
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('admin.contacts.open')}}">Responder</a></li>
-                                        <li><a href="{{ route('admin.contacts.index')}}">listar todos</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-                    @endif
-                </div>
-            </div>
-            <div class="col-sm-1">
-                <div class="logo pull-left">
-                    <a href="{{route('admin.layout.admin')}}">
-                        <img class="img-responsive" src="{{url('img/logo.png')}}" alt=""/>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="shop-menu pull-right">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user"></i>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{route('admin.users.password',['id'=>auth()->user()->id])}}">Mudar Senha</a></li>
-                                <li><a href="{{route('admin.users.edit',['id'=>auth()->user()->id])}}">Editar dados</a></li>
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <a href="{{ url('/logout') }}" type="button" class="btn btn-danger">Sair</a>
-                        </div>
-                    </div>
+            <div class="col-lg-10" style="margin-top: 5%;">
+                @include('layouts.site_structure.msg.alert_primary')
+                <div style="margin-bottom: 5%;" class="col-lg-offset-1 col-lg-10 padding-right">
+                    @yield('content')
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--/header-middle-->
 
-</header><!--/header-->
+    @yield('footer')
 
-
-<section class="clearmargin">
-    @yield('content')
-</section>
-
-<footer style="clear: both; margin-top: 10%;" id="footer"><!--Footer-->
-
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <p class="pull-left">Copyright © 2015 Acesso Público. All rights reserved.</p>
-
-                <p class="pull-right">Designed by <span><a target="_blank" href="https://www.acessopublico.org.br/">ACESSO</a></span>
-                </p>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<!--/Footer-->
-
-
-<!-- JavaScripts -->
-
-
-<script src="{{url(elixir('js/all.js'))}}"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!-- JavaScripts -->
+    <script src="{{url(elixir('js/all.js'))}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 
 
 </body>

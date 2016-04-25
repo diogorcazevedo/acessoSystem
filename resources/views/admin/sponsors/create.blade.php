@@ -1,14 +1,13 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
         <hr class="hrstyle">
-        <h3 class="text-center">Nova Administração</h3>
+        <h3 class="text-uppercase">Nova Administração</h3>
         <hr class="hrstyle">
 
         @include('errors._check')
 
-    {!! Form::open(['route'=>'admin.sponsors.store']) !!}
+    {!! Form::open(['route'=>'bancas']) !!}
 
         @include('admin.sponsors.partial._form')
 
@@ -19,7 +18,5 @@
 
 
     {!! Form::close()!!}
- </div>
-
 
 @endsection

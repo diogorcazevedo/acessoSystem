@@ -1,9 +1,8 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
         <hr class="hrstyle">
-        <h4 class="text-center">Avisos</h4>
+        <h4 class="text-uppercase">Avisos</h4>
         <hr class="hrstyle">
         <br/>
         <a href='{{route('admin.warnings.create')}}' class="btn btn-primary">Novo Aviso</a>
@@ -38,8 +37,4 @@
             </tbody>
         </table>
         {!! $warnings->render() !!}
-
-    </div>
-
-
 @endsection

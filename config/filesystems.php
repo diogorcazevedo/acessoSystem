@@ -47,6 +47,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app'),
         ],
+        'local_export_free' => [
+            'driver' => 'local',
+            'root'   => public_path().'/export_frees'
+        ],
 
         'local_protocols' => [
             'driver' => 'local',

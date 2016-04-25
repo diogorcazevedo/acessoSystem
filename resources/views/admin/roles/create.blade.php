@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
+            <hr class="hrstyle">
+            <h4 class="text-uppercase">Cadastro de Permissões</h4>
+            <hr class="hrstyle">
 
-        <div class="col-lg-offset-2 col-sm-8">
-            <h4>Cadastro de Roles</h4>
             <br/>
             @include('errors._check')
 
@@ -17,7 +17,5 @@
                 {!! Form::submit('Enviar',['class'=>'btn btn-primary']) !!}
             </div>
             {!! Form::close()!!}
-        </div>
 
-    </div>
 @endsection

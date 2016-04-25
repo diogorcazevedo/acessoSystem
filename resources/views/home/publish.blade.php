@@ -1,56 +1,44 @@
 @extends('app')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 bannerbackground">
-                <section>
-                    <div class="col-lg-offset-1 col-lg-6">
-                        <h4 class="cabec1">PROCESSOS SELETIVOS, CONCURSOS PÚBLICOS E VESTIBULARES DE ALTA
-                            COMPLEXIDADE</h4>
-                    </div>
-
-                    <div class="col-lg-5 folder">
-                        <img class="img-responsive" src="{{url('img/home/folder.png')}}" width="60%"/>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="seta"></div>
-    <div class="container-fluid">
         <div class="col-lg-6">
             <section>
-                <blockquote>
-                    <h2 class="meio">Avisos:</h2>
-                </blockquote>
+                <h2 class="meio">CONCURSOS</h2>
+                <hr class="hrstyle">
                 <div class="col-lg-offset-1 col-lg-11 wellwhite well-sm">
-                    <div class="col-lg-3">
-                        @foreach($protocol->files as $file)
-                            @if($file->type == 1)
-                                <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"
-                                     width="60" height="60"/>
-                            @endif
-                        @endforeach
-                    </div>
-                    <div class="col-lg-offset-1 col-lg-8">
-                        <a href="#">
-                            <p><b>{{$protocol->name}}</b><p/>
-                            <p> <small>{{$protocol->description}}</small></p>
-                        </a>
-                    </div>
-                    <div class="col-lg-12">
-                        @foreach($protocol->projects as $project)
-                            <div class="wellwhite">
-                                <p><b>Concurso: {{$project->name}}</b><p/>
-                                <p>Nível de escolaridade: {{$project->schooling}}<p/>
-                                <p>Descrição:  <small>{{$project->description}}</small></p>
-                                @if($protocol->status == 1)
-                                <p>Taxa de inscrição: {{$project->tax}}<p/>
-                                <p><a href="{{url('register')}}" class="btn btn-sm btn-orange">Cadastrar</a> </p>
-                                @endif
-                            </div>
-                        @endforeach
+
+                    <div class="panel panel-default">
+                        <div class="panel panel-heading">
+
+                                @foreach($protocol->files as $file)
+                                    @if($file->type == 1)
+                                        <img src="{{url('uploads/protocols/'.$file->id.'.'.$file->extension)}}"
+                                             width="70" height="60"/>
+                                    @endif
+                                @endforeach
+                                    <a><b>{{$protocol->name}}</b></a>
+                                    <p> <small>{{$protocol->description}}</small></p>
+                        </div>
+                        <div class="panel panel-body">
+                            <article>
+                                @foreach($protocol->projects as $project)
+                                    <div class="wellwhite">
+                                        <p><b>Concurso: {{$project->name}}</b><p/>
+                                        <p>Nível de escolaridade: {{$project->schooling}}<p/>
+                                        <p>Descrição:  {{$project->description}}</p>
+                                        @if($protocol->status == 1)
+                                            <p>Taxa de inscrição: {{$project->tax}}<p/>
+                                            @if(auth()->guest())
+                                            <p><a href="{{ route('registers.create',['id'=>$project->id])}}" class="btn btn-sm btn-orange">Cadastro e inscrição</a></p>
+                                            <p><a href="{{ route('registers.login',['id'=>$project->id])}}" class="btn btn-sm btn-primary">Já possuo cadastro</a></p>
+                                            @else
+                                             <p><a href="{{ route('Project',['id'=>$project->id])}}" class="btn btn-sm btn-orange">inscrição</a></p>
+                                            @endif
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </article>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -92,9 +80,6 @@
                 @endif
             </div>
         </div>
-
-    </div>
-
 
     <!-- Rodapé -->
     <div class="seta2"></div>

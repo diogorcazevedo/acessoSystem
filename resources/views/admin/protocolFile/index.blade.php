@@ -2,12 +2,11 @@
 
 
 @section('content')
-    <div class="container">
-        <hr class="hrstyle">
-        <h4 class="text-center">Images of {{$protocol->name}}</h4>
-        <hr class="hrstyle">
+        <hr>
+        <h4 class="text-uppercase">Imagens {{$protocol->name}}</h4>
+        <hr>
         <br/>
-        <a href="{{route('admin.protocolsfile.create',['id'=>$protocol->id])}}" class="btn btn-primary">Nova Imagem</a>
+        <a href="{{route('admin.protocolsfile.create',['id'=>$protocol->id])}}" class="btn gray">Nova Imagem</a>
         <br/>
         <br/>
 
@@ -37,8 +36,6 @@
             @endforeach
             </tbody>
         </table>
-<a href="{{route('admin.protocols.index')}}" class="btn btn-primary">Voltar para Editais</a>
-    </div>
-
+        <a href="{{route('admin.protocols.index')}}" class="btn gray">Voltar para Editais</a>
 
 @endsection

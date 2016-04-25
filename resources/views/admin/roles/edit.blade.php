@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
-    <div class="col-lg-offset-1 col-lg-10 padding-right">
-        <h3>Editar Documento: {{$role->name}}</h3>
+        <hr class="hrstyle">
+        <h4 class="text-uppercase">Editar Permissão: {{$role->name}}</h4>
+        <hr class="hrstyle">
+
 
         @include('errors._check')
 
@@ -17,7 +18,5 @@
         </div>
 
     {!! Form::close()!!}
- </div>
-
 
 @endsection

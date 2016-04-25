@@ -1,15 +1,14 @@
 @extends('layouts.admin.app')
 
 @section('content')
-    <div class="container">
         <hr class="hrstyle">
-        <h3 class="text-center">Editar Administração: {{$sponsor->name}}</h3>
+        <h3 class="text-uppercase">Editar Administração: {{$sponsor->name}}</h3>
         <hr class="hrstyle">
 
         @include('errors._check')
 
 
-    {!! Form::model($sponsor,['route'=>['admin.sponsors.update',$sponsor->id]]) !!}
+    {!! Form::model($sponsor,['route'=>['bancas',$sponsor->id]]) !!}
 
         @include('admin.sponsors.partial._form')
 
@@ -20,7 +19,5 @@
 
 
     {!! Form::close()!!}
- </div>
-
 
 @endsection

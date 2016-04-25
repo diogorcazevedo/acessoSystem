@@ -2,8 +2,9 @@
 
 
 @section('content')
-    <div class="container">
-        <h3>Upload Arquivos</h3>
+        <hr class="hrstyle">
+        <h4 class="text-uppercase">Upload Arquivos</h4>
+        <hr class="hrstyle">
 
         @include('errors._check')
 
@@ -13,12 +14,10 @@
 
         <div class="form-group">
 
-            {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Salvar',['class'=>'btn btn-warning']) !!}
         </div>
 
 
         {!! Form::close()!!}
-    </div>
-
 
 @endsection

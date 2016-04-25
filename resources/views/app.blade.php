@@ -9,172 +9,129 @@
     <meta name="keywords" content="concurso publico">
     <meta name="robots" content="index, follow">
     <meta name="description" content="Sistema de concurso público acesso público">
-    <title>Acesso Público</title>
-
-    <link rel="apple-touch-icon" sizes="57x57" href="{{url('img/favico/apple-icon-57x57.png')}}"/>
-    <link rel="apple-touch-icon" sizes="60x60" href="{{url('img/favico/apple-icon-60x60.png')}}"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="{{url('img/favico/apple-icon-72x72.png')}}"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="{{url('img/favico/apple-icon-76x76.png')}}"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="{{url('img/favico/apple-icon-114x114.png')}}"/>
-    <link rel="apple-touch-icon" sizes="120x120" href="{{url('img/favico/apple-icon-120x120.png')}}"/>
-    <link rel="apple-touch-icon" sizes="144x144" href="{{url('img/favico/apple-icon-144x144.png')}}"/>
-    <link rel="apple-touch-icon" sizes="152x152" href="{{url('img/favico/apple-icon-152x152.png')}}"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="{{url('img/favico/apple-icon-180x180.png')}}"/>
-    <link rel="icon" type="image/png" sizes="192x192" href="{{url('img/favico/android-icon-192x192.png')}}"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{url('img/favico/favicon-32x32.png')}}"/>
-    <link rel="icon" type="image/png" sizes="96x96" href="{{url('img/favico/favicon-96x96.png')}}"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('img/favico/favicon-16x16.png')}}"/>
+    <title>Instituto de Seleção</title>
 
 
-    <!-- Styles -->
     <link href="{{url(elixir('css/all.css'))}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 
 </head>
 <!--/head-->
-<header>
-    <p class="logotopo"><a href="{{route('home')}}">
-            <img src="{{url('img/home/logo_acesso.png')}}">
-        </a>
-    </p>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Acesso Público</span>
-                    <span id="icon-bar" class="icon-bar"></span>
-                    <span id="icon-bar" class="icon-bar"></span>
-                    <span id="icon-bar" class="icon-bar"></span>
-                </button>
-
-            </div>
-            <div id="navbar1" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right primeiroheader">
-                    <li><a id="primeiromenu" href="{{ route('home.enterprise')}}">Instituição</a></li>
-                    <li><a id="primeiromenu" href="{{ route('home.evaluation')}}">Provas e Instrumentos de
-                            Avaliação</a></li>
-                    <li><a id="primeiromenu" href="{{route('admin.layout.admin')}}">Administração</a></li>
-                    <li><a id="primeiromenu" href="http://webmail.acessopublico.com.br/">Webmail</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <nav class="navbar navbar2">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Administração Acesso</span>
-                <span id="icon-bar" class="icon-bar"></span>
-                <span id="icon-bar" class="icon-bar"></span>
-                <span id="icon-bar" class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a id="segundomenu" href="{{route('contacts.create')}}">CONTATO</a></li>
-                <li><a id="segundomenu" href="{{route('home.security')}}">SEGURANÇA</a></li>
-                <li><a id="segundomenu" href="{{route('home.governance')}}">GOVERNANÇA</a></li>
-                <li><a id="segundomenu" href="{{url('/login')}}">LOGIN</a></li>
-                <li><a id="segundomenu" href="{{url('/register')}}">CADASTRAR</a></li>
-            </ul>
-        </div>
-        </div>
-    </nav>
-
-</header>
 <body>
+<p class="logoIST"><a href="{{ url('/') }}"><img src="{{url('img/logo.png')}}" alt="" width="100" /></a></p>
 
-<section>
-    @yield('content')
-</section>
-
-
-<div class="container-fluid">
-    <div class="row">
-
-        <div class="col-lg-12">
-
-            <section class="endereco">
-                <h2 class="meio">ENDEREÇOS</h2>
-
-                <div class="col-lg-offset-2 col-lg-5">
-                    <article>
-                        <a href="#">
-                            <h2 class="meio2">Sede:</h2>
-
-                            <div class="short"> Rua Prof. Gabizo, 41 Tijuca <br/> Rio de Janeiro / RJ</div>
-                        </a>
-                    </article>
+<header id="header"><!--header-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li class="dropdown"><a href="#">Instituição<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a  href="{{ route('home.enterprise')}}">Instituição</a></li>
+                                    <li><a  href="{{ route('home.evaluation')}}">Provas</a></li>
+                                    <li><a  href="{{route('home.security')}}">Segurança</a></li>
+                                    <li><a  href="{{route('home.governance')}}">Governança</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Administração<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="{{route('admin.layout.admin')}}">Painel</a></li>
+                                    <li><a  href="http://webmail.acessopublico.com.br/">Webmail</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{route('contacts.create')}}">Contato</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-lg-5">
-                    <article>
-                        <a href="#">
-                            <h2 class="meio2">Regional Espirito Santo:</h2>
-
-                            <div class="short">Av Nossa Senhora da Penha 280, sala 205 <br/> Vitória / ES</div>
-                        </a>
-                    </article>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
-
-<div class="seta"></div>
-<div class="container-fluid">
-    <div class="row">
-
-        <div class="col-lg-12">
-
-            <h3 class="meio">CANAIS DE CONTATO</h3>
-
-            <div class="col-lg-offset-1 col-lg-5">
-                <div class="col-lg-4">
-
-                    <img src="{{url('img/home/contato-email.png')}}" class="pull-right">
-                </div>
-                <div class="col-lg-8 borda">
-                    <p style="clear: both; width: 60%; margin-top: 20%;"><a class="bt" href="#">Fale conosco</a></p>
-                    <!--    <p class="canal">  <a href="mailto:proposta@acessopublico.com.br">proposta@acessopublico.org.br</a></p>
-                            <p class="canal">   <a href="mailto:suporte@acessopublico.com.br">suporte@acessopublico.org.br</a> </p>-->
-                </div>
-
-                <br/><br/><br/><br/><br/><br/>
-
-                <h3 style="clear: both;" class="horadeatendimento">HORÁRIO DE ATENDIMENTO: 9:00 às 17:00</h3>
-            </div>
-
-
-            <div class="col-lg-3">
-                <div class="col-lg-4">
-                    <img class="phone" src="{{url('img/home/contato-phone.png')}}">
-                </div>
-                <div class="col-lg-8 borda">
-                    <div class="fone-group">
-                        <p class="canal2">Comercial</p>
-
-                        <p class="canal">(21) 3174-0911</p>
-                        <!-- <p class="canal2">Comercial ES</p>
-                         <p class="canal">(27) 3029-7774</p>-->
+                <div class="col-sm-4">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            @if(auth()->guest())
+                                @if(!Request::is('auth/login'))
+                                    <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i>Login</a></li>
+                                @endif
+                                @if(!Request::is('auth/register'))
+                                    <li><a href="{{ url('register') }}"><i class="fa fa-user"></i> Register</a></li>
+                                @endif
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"> {{primeiroNome(auth()->user()->name)}}  <span class="caret"></span></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a class="backgroundBlue" href="{{ url('/logout') }}"><i class="fa fa-lock"></i>Logout</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+</header>
+<hr class="hrstyle">
+<section>
+    <div class="container marginTop5">
+        <div class="row">
+            @yield('content')
+        </div>
     </div>
-</div>
-
-<footer>
-    <!-- Site footer -->
-
-
-    <div id="rodape">
-        <address><img class="img-responsive" src="{{url('img/home/rodape.jpg')}}"/></address>
+    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <ul class="list-inline item-details">
+                <li><a href="http://themifycloud.com">ThemifyCloud</a></li>
+                <li><a href="http://themescloud.org">ThemesCloud</a></li>
+            </ul>
+        </div>
     </div>
-</footer>
-</div>
-</div>
+</section>
+
+<footer id="footer"><!--Footer-->
+    <div class="header_top"><!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> (27) 3029-7774</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> atendimento@institutodeselecao.com.br</a></li>
+                            <li><a href="#"><i class="fa fa-gears"></i> Central de Atendimento – Av. Nossa Senhora da Penha 280, sala 205</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header_top-->
+
+</footer><!--/Footer-->
+
+
+
+<script src="{{ url(elixir('js/all.js')) }}"></script>
+
+
+@yield('post-script')
+
 </body>
 </html>

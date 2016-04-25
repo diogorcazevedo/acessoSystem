@@ -1,23 +1,8 @@
 @extends('layouts.admin.app')
 @section('content')
-    @if(Session::has('success'))
-        <div style="margin-bottom: 2%;" class="col-lg-offset-1 col-sm-10 padding-right">
-            <div class="features_items">
-                <ul class="list-group">
-                    <li class="list-group-item listback text-center">{{Session::get('success')}}</li>
-                </ul>
-            </div>
-        </div>
-        {{Session::forget('success')}}
-    @endif
-
-    <div style="margin-bottom: 5%;" class="col-lg-offset-1 col-lg-10 padding-right">
-        <hr class="hrstyle">
-        <h4 class="text-center">Contatos dos candidatos - Qtd de contatos:: {{$count}}</h4>
-        <hr class="hrstyle">
-        <br/>
-        <a href=" {{route('admin.layout.admin')}}" class="btn btn-primary ">Voltar</a>
-        <br/>
+        <hr>
+        <h4 class="text-uppercase">Contatos dos candidatos - Qtd de contatos:: {{$count}}</h4>
+        <hr>
         <br/>
 
         <table class="table table-bordered">
@@ -34,6 +19,8 @@
                 <div class="form-group">
                     {!! Form::submit('Pesquisar',['class'=>'btn btn-warning']) !!}
                 </div>
+                <br/>
+                <br/>
                 <br/>
                 <br/>
             </div>
@@ -69,7 +56,7 @@
                         {!! Form::hidden('id', $contact->id) !!}
                         <?php $inpt = $contact->id ?>
                         <div class="form-group">
-                            <input type="button" onclick="addFunction(<?php echo $inpt ?>);" value="responder" class="btn btn-primary">
+                            <input type="button" onclick="addFunction(<?php echo $inpt ?>);" value="responder" class="btn btn-warning">
                         </div>
                         {!! Form::close()!!}
                     </td>
@@ -80,7 +67,6 @@
 
         {!! $contacts->render() !!}
 
-    </div>
 
     <script type="text/javascript">
         function addFunction(id) {
